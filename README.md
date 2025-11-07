@@ -32,6 +32,7 @@ Example (bash):
 export COGNITO_CLIENT_ID="<your-client-id>"
 export COGNITO_CLIENT_SECRET="<your-secret>"
 export GOOGLE_CLIENT_ID="<your-google-client-id>"
+export APPLE_CLIENT_ID="<your-apple-clinet-id>"
 
 ```
 

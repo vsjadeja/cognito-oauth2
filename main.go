@@ -141,12 +141,14 @@ func loginWithAppleHandler(w http.ResponseWriter, r *http.Request) {
 	email := fmt.Sprintf("%v", claims["email"])
 	fmt.Printf("✅ Verified Apple login for: %s\n", email)
 
-	// Optionally integrate with Cognito
+	// integrate with Cognito
 	resp, err := cognitoClientApple.InitiateAuth(ctx, &cognito.InitiateAuthInput{
-		AuthFlow: "CUSTOM_AUTH",
+		AuthFlow: "USER_SRP_AUTH",
 		ClientId: aws.String(clientIDApple),
 		AuthParameters: map[string]string{
-			"USERNAME": email,
+			"IDENTITY_PROVIDER": "Apple",
+			"USERNAME":          email,
+			"ID_TOKEN":          req.IDToken,
 		},
 	})
 	if err != nil {
